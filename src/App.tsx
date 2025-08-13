@@ -56,6 +56,7 @@ const App = () => {
     handleSubmit,
     formState: { errors, touchedFields },
     trigger,
+    watch,
   } = useForm({
     resolver: zodResolver(Schema),
     mode: "onChange",
@@ -76,7 +77,7 @@ const App = () => {
   const onsubmit = (data: any) => {
     console.log(data);
   };
-
+  const acc = watch("acctype");
   return (
     <div >
       <form
@@ -134,7 +135,6 @@ const App = () => {
                 {...register("acctype")}
                 className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
               >
-                <option value="">Select type</option>
                 <option value="Demo">Demo</option>
                 <option value="Live">Live</option>
               </select>
@@ -151,7 +151,6 @@ const App = () => {
                 {...register("risktollerance")}
                 className="w-full border border-gray-300 rounded px-3 py-2 mt-1"
               >
-                <option value="">Select risk</option>
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
@@ -163,7 +162,7 @@ const App = () => {
                   </p>
                 )}
             </div>
-
+           {acc==="Live" &&
             <div>
               <label className="block font-semibold">
                 Enter Your PAN number
@@ -179,6 +178,7 @@ const App = () => {
                 </p>
               )}
             </div>
+             }
           </>
         )}
         {step === 3 && (
